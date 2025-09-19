@@ -1,11 +1,15 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
-import { GeistSans } from "geist/font/sans"
-import { GeistMono } from "geist/font/mono"
+import { Inter } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { Suspense } from "react"
 import { AuthProvider } from "@/lib/auth"
 import "./globals.css"
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+})
 
 export const metadata: Metadata = {
   title: "Aplikasi Organisasi",
@@ -47,7 +51,7 @@ export default function RootLayout({
         <meta name="msapplication-TileColor" content="#059669" />
         <meta name="msapplication-tap-highlight" content="no" />
       </head>
-      <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
+      <body className={`${inter.variable} font-sans antialiased`}>
         <AuthProvider>
           <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
         </AuthProvider>
